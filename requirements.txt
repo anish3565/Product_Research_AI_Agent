@@ -1,4 +1,2 @@
 python-dotenv
 requests
-json
-pprint # For pretty-printing JSON data
