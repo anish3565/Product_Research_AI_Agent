@@ -3,3 +3,5 @@ requests
 opensearch-py
 tiktoken
 crewai
+langchain-core
+langchain-ollama
