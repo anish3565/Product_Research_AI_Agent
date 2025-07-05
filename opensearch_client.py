@@ -1,8 +1,8 @@
 from opensearchpy import OpenSearch
 
 def get_opensearch_client(host, port):
-    client=OpenSearch(
-        hosts=[{"host": host, "port":port}],
+    client = OpenSearch(
+        hosts=[{"host": host, "port": port}],
         http_compress=True,
         timeout=30,
         max_retries=3,
@@ -10,13 +10,14 @@ def get_opensearch_client(host, port):
     )
 
     if client.ping():
-        print("Connect to OpenSearch!")
-        info=client.info()
+        print("✅ Connected to OpenSearch!")
+        info = client.info()
         print(f"Cluster name: {info['cluster_name']}")
         print(f"OpenSearch version: {info['version']['number']}")
     else:
-        print("Connection failed!")
+        print("❌ Connection failed!")
         raise ConnectionError("Failed to connect to OpenSearch")
+
     return client
 
 
@@ -28,21 +29,19 @@ def create_index_if_not_exists(client, index_name):
         client: Opensearch client instance
         index_name: Name of the index to create
     """
-
-    # Delete the index if it exists (to ensure proper mapping)
-    if client.indices.exists(index=index_name):
-        print(f"Deleting existing index: '{index_name}' to recreate it.")
-
-        client.indices.delete(index=index_name)
-
-    # Get dimension from a sample embedding
     from embeddings import get_embedding
 
+    # Delete the index if it exists (for clean re-creation)
+    if client.indices.exists(index=index_name):
+        print(f"⚠️ Deleting existing index: '{index_name}' to recreate it.")
+        client.indices.delete(index=index_name)
+
+    # Get embedding dimension dynamically
     sample_embedding = get_embedding("Sample text for dimension detection")
     dimension = len(sample_embedding)
-    print(f"Using embedding dimension: {dimension}")
+    print(f"📏 Using embedding dimension: {dimension}")
 
-    # Define the index mapping with vector field for embeddings
+    # Define mapping with knn_vector field
     mapping = {
         "mappings": {
             "properties": {
@@ -55,25 +54,31 @@ def create_index_if_not_exists(client, index_name):
                 "patent_id": {"type": "keyword"},
                 "pdf": {"type": "keyword"},
                 "token_count": {"type": "integer"},
-                "embedding":{"type":"knn_vector", "dimension": dimension},
+                "embedding": {
+                    "type": "knn_vector",
+                    "dimension": dimension,
+                },
             }
         },
         "settings": {
             "index": {
                 "knn": True,
-                "knn.space_type": "cosinesimil", # Use cosine similarity for embeddings
+                "knn.space_type": "cosinesimil",
             }
         },
     }
 
+    client.indices.create(index=index_name, body=mapping)
+    print(f"✅ Index '{index_name}' created with vector support!")
 
-if __name__=="__main__":
-    host="localhost"
-    port=9200
-    client=get_opensearch_client(host, port)
+
+if __name__ == "__main__":
+    host = "localhost"
+    port = 9200
+    client = get_opensearch_client(host, port)
 
     # List all indices
-    indices=client.cat.indices(format="json")
-    print("Available indices:")
+    indices = client.cat.indices(format="json")
+    print("📂 Available indices:")
     for index in indices:
         print(f" - {index['index']}")
