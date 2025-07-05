@@ -1,5 +1,6 @@
 import os
 import requests
+from datetime import datetime
 from crewai import Agent, Crew, Task, Process
 from crewai.tools import BaseTool
 
@@ -339,32 +340,32 @@ def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
             + "4. Try a simpler model or reduce task complexity"
         )
 
-
-
+# Main execution
 if __name__ == "__main__":
-    print("🔍 Checking Ollama model availability...\n")
-    available_models = check_ollama_availability()
+    # Get the research area from user input
+    research_area = input(
+        "Enter the research area to analyze (default: Lithium Battery): "
+    )
+    if not research_area:
+        research_area = "Lithium Battery"
 
-    if not available_models:
-        print("❌ No models found. Please ensure Ollama is running and models are installed.")
-        exit(1)
+    # Get the model name from user input
+    model_name = input("Enter the Ollama model to use: ")
+    if not model_name:
+        model_name = "llama2"
 
-    print("✅ Available Ollama models:")
-    for idx, model in enumerate(available_models, start=1):
-        print(f" {idx}. {model}")
+    # Run the analysis
+    result = run_patent_analysis(research_area, model_name)
 
-    selected_model = None
-    while True:
-        try:
-            choice = input(f"\nEnter the model number to use [1-{len(available_models)}] or press Enter for default (1): ").strip()
-            selected_model = available_models[0] if not choice else available_models[int(choice) - 1]
+    # Save results to file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"patent_analysis_{timestamp}.txt"
 
-            print(f"\n🧠 Selected model: {selected_model}")
+    # Ensure result is a string before writing to file
+    if not isinstance(result, str):
+        result = str(result)
 
-            if test_model(selected_model):
-                print(f"\n✅ Model '{selected_model}' is working fine!")
-                break
-            else:
-                print("❌ Try choosing another model.\n")
-        except (ValueError, IndexError):
-            print("⚠️ Invalid input. Please enter a valid number.")
+    with open(filename, "w") as f:
+        f.write(result)
+
+    print(f"Analysis completed and saved to {filename}")
