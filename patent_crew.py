@@ -41,6 +41,41 @@ def test_model(model_name):
             print(f"⚠️ Error testing model '{model_name}': {e}")
         return False
 
+# Define custom tools by extending BaseTool from CrewAI
+class SearchPatentsTool(BaseTool):
+    name: str = "search_patents"
+    description: str = "Search for patents matching a query"
+
+    def _run(self, query: str, top_k: int = 20) -> str:
+        client = get_opensearch_client("localhost", 9200)
+        index_name = "patents"
+
+        search_query = {
+            "size": top_k,
+            "query": {"bool": {"must": [{"match": {"abstract": query}}]}},
+            "_source": ["title", "abstract", "publication_date", "patent_id"],
+        }
+
+        try:
+            response = client.search(index=index_name, body=search_query)
+            results = response["hits"]["hits"]
+
+            # Format results as a string for better LLM consumption
+            formatted_results = []
+            for i, hit in enumerate(results):
+                source = hit["_source"]
+                formatted_results.append(
+                    f"{i+1}. Title: {source.get('title', 'N/A')}\n"
+                    f"   Date: {source.get('publication_date', 'N/A')}\n"
+                    f"   Patent ID: {source.get('patent_id', 'N/A')}\n"
+                    f"   Abstract: {source.get('abstract', 'N/A')[:200]}...\n"
+                )
+
+            return "\n".join(formatted_results)
+        except Exception as e:
+            return f"Error searching patents: {str(e)}"
+
+
 if __name__ == "__main__":
     print("🔍 Checking Ollama model availability...\n")
     available_models = check_ollama_availability()
