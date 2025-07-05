@@ -305,6 +305,41 @@ def create_patent_analysis_crew(model_name="llama3"):
     return crew
 
 
+def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
+    """
+    Run the patent analysis crew for the specified research area.
+
+    Args:
+        research_area (str): The research area to analyze (e.g., "Lithium Battery")
+        model_name (str): Ollama model to use
+
+    Returns:
+        str: Analysis results
+    """
+    try:
+        crew = create_patent_analysis_crew(model_name)
+        result = crew.kickoff(inputs={"research_area": research_area})
+
+        # Extract the string output from the CrewOutput object
+        if hasattr(result, "output"):
+            # Recent CrewAI versions store results in the 'output' attribute
+            return result.output
+        elif hasattr(result, "result"):
+            # Some versions might use 'result'
+            return result.result
+        else:
+            # Last resort - convert to string
+            return str(result)
+    except Exception as e:
+        return (
+            f"Analysis failed: {str(e)}\n\nTroubleshooting tips:\n"
+            + "1. Make sure Ollama is running: 'ollama serve'\n"
+            + "2. Pull a compatible model: 'ollama pull llama3' or 'ollama pull mistral'\n"
+            + "3. Check Ollama logs for errors\n"
+            + "4. Try a simpler model or reduce task complexity"
+        )
+
+
 
 if __name__ == "__main__":
     print("🔍 Checking Ollama model availability...\n")
