@@ -115,7 +115,54 @@ def hybrid_search(query_text, top_k=20):
             print(f"Fallback search error: {e2}")
             return []
 
+def iterative_search(query_text, refinement_steps=3, top_k=20):
+    """
+    Perform iterative search with query refinement.
 
+    Args:
+        query_text (str): The initial query text
+        refinement_steps (int): Number of search refinement iterations
+        top_k (int): Number of results per iteration
+
+    Returns:
+        list: Search results
+    """
+    client = get_opensearch_client("localhost", 9200)
+    index_name = "patents"
+
+    all_results = []
+    current_query = query_text
+
+    for i in range(refinement_steps):
+        try:
+            # Perform search with current query
+            search_query = {
+                "size": top_k,
+                "query": {"match": {"abstract": current_query}},
+                "_source": ["title", "abstract", "publication_date", "patent_id"],
+            }
+
+            response = client.search(index=index_name, body=search_query)
+            results = response["hits"]["hits"]
+
+            # Add new results
+            for result in results:
+                if result not in all_results:
+                    all_results.append(result)
+
+            if not results:
+                break
+
+            # Refine query based on top result
+            if results:
+                top_result = results[0]
+                current_query = f"{current_query} {top_result['_source']['title']}"
+
+        except Exception as e:
+            print(f"Iterative search error at step {i}: {e}")
+            break
+
+    return all_results
 
 if __name__ == "__main__":
     query = "lithum battery"
