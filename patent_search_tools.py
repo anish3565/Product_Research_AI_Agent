@@ -132,3 +132,9 @@ if __name__ == "__main__":
     # semantic_results=semantic_search(query)
     # for result in semantic_results:
     #     print(result, end="\n\n")
+
+    # Perform Hybrid Search
+    print("Hybird Search Results:")
+    hybrid_results = semantic_search(query)
+    for result in hybrid_results:
+        print(result, end="\n\n") 
