@@ -16,7 +16,7 @@ def keyword_search(query_text, top_k=20):
     index_name = "patents"
 
     try:
-        # Create a keyword search query
+        # Creating a keyword search query
         search_query = {
             "size": top_k,
             "query": {"match": {"abstract": query_text}},
@@ -29,13 +29,56 @@ def keyword_search(query_text, top_k=20):
     except Exception as e:
         print(f"Keyword search error: {e}")
         return []
+    
+def semantic_search(query_text, top_k=20):
+    """
+    Peform semantic search using vector embeddings.
+
+    Args:
+        query_text (str): The query text to search for.
+        top_k (int): Number of results to return.
+    
+    Returns:
+        list: A list of dictionaries containing search results.
+    """
+    client=get_opensearch_client("localhost", 9200)
+    index_name = "patents"
+
+    try:
+        # Get the embedding for the query text
+        query_embedding = get_embedding(query_text)
+
+        # Creating a semantic search query
+        search_query = {
+            "size": top_k,
+            "query": {
+                "knn": {
+                    "embedding": {
+                        "vector": query_embedding,
+                        "k": top_k,
+                    }
+                }
+            },
+            "_source": ["title", "abstract", "publication_date", "patent_id"],
+        }
+
+        response = client.search(index=index_name, body=search_query)
+        return response["hits"]["hits"]
+    except Exception as e:
+        print(f"Semantic search error: {e}")
+        return []
+
+
+
+
 
 if __name__ == "__main__":
     query = "lithum battery"
 
-    # Perform keyword search
-    print("Keyword Search Results:")
-    keyword_results = keyword_search(query)
-    for result in keyword_results:
-        print(result, end="\n\n")
+    # # Perform keyword search
+    # print("Keyword Search Results:")
+    # keyword_results = keyword_search(query)
+    # for result in keyword_results:
+    #     print(result, end="\n\n")
+
     
