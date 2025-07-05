@@ -76,6 +76,53 @@ class SearchPatentsTool(BaseTool):
             return f"Error searching patents: {str(e)}"
 
 
+class SearchPatentsByDateRangeTool(BaseTool):
+    name: str = "search_patents_by_date_range"
+    description: str = "Search for patents in a specific date range"
+
+    def _run(self, query: str, start_date: str, end_date: str, top_k: int = 30) -> str:
+        client = get_opensearch_client("localhost", 9200)
+        index_name = "patents"
+
+        search_query = {
+            "size": top_k,
+            "query": {
+                "bool": {
+                    "must": [{"match": {"abstract": query}}],
+                    "filter": [
+                        {
+                            "range": {
+                                "publication_date": {"gte": start_date, "lte": end_date}
+                            }
+                        }
+                    ],
+                }
+            },
+            "_source": ["title", "abstract", "publication_date", "patent_id"],
+        }
+
+        try:
+            response = client.search(index=index_name, body=search_query)
+            results = response["hits"]["hits"]
+
+            # Format results as a string
+            formatted_results = []
+            for i, hit in enumerate(results):
+                source = hit["_source"]
+                formatted_results.append(
+                    f"{i+1}. Title: {source.get('title', 'N/A')}\n"
+                    f"   Date: {source.get('publication_date', 'N/A')}\n"
+                    f"   Patent ID: {source.get('patent_id', 'N/A')}\n"
+                    f"   Abstract: {source.get('abstract', 'N/A')[:200]}...\n"
+                )
+
+            return "\n".join(formatted_results)
+        except Exception as e:
+            return f"Error searching patents: {str(e)}"
+        
+
+
+
 if __name__ == "__main__":
     print("🔍 Checking Ollama model availability...\n")
     available_models = check_ollama_availability()
