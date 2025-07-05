@@ -131,6 +131,178 @@ class AnalyzePatentTrendsTool(BaseTool):
         return f"Analysis of patent trends: {patents_data}"
 
 
+# Agent setup
+def create_patent_analysis_crew(model_name="llama3"):
+    """
+    Create a CrewAI crew for patent analysis using Ollama.
+
+    Args:
+        model_name (str): name of the ollama model to be used
+    
+    Returns:
+        Crew: A CrewAI crew instance configured for patent analysis
+    """
+
+    # Checking if the model exists in Ollama
+    available_models = check_ollama_availability()
+    if not available_models:
+        raise ValueError("No available models found in Ollama. Please ensure Ollama is running and models are installed.")
+
+    # Test model
+    if not test_model(model_name):
+        raise ValueError(f"Model '{model_name}' is not working. Please check the model or pull it manually.")
+
+    print("Modee found and tested successfully.")
+
+    # Fix the model format by adding the 'ollama/' prefix
+    if not model_name.startswith("ollama/"):
+        model_name = f"ollama/{model_name}"
+
+    llm = OllamaLLM(model=model_name, temperature=0.2)
+
+    # Create tools using CrewAI's BaseTool subclasses
+    tools = [
+        SearchPatentsTool(),
+        SearchPatentsByDateRangeTool(),
+        AnalyzePatentTrendsTool()
+    ]
+
+    # Create agents with the correct tools and LLM
+    research_director = Agent(
+        role="Research Director",
+        goal="Coordinate research efforts and define the scope of patent analysis",
+        backstory="You are an experienced research director who specializes in technological innovation analysis.",
+        verbose=True,
+        allow_delegation=True,
+        llm=llm,
+        tools=tools
+    )
+
+    patent_retriever = Agent(
+        role="Patent Retriever",
+        goal="Find and retrieve the most relevant patents related to the research area",
+        backstory="You are a specialized patent researcher with expertise in information retrieval systems.",
+        verbose=True,
+        allow_delegation=False,
+        llm=llm,
+        tools=tools,
+    )
+
+    data_analyst = Agent(
+        role="Patent Data Analyst",
+        goal="Analyze patent data to identify trends, patterns, and emerging technologies",
+        backstory="You are a data scientist specializing in patent analysis with years of experience in technology forecasting.",
+        verbose=True,
+        allow_delegation=False,
+        llm=llm,
+        tools=tools,
+    )
+
+    innovation_forecaster = Agent(
+        role="Innovation Forecaster",
+        goal="Predict future innovations and technologies based on patent trends",
+        backstory="You are an expert in technological forecasting with a track record of accurate predictions in emerging technologies.",
+        verbose=True,
+        allow_delegation=False,
+        llm=llm,
+        tools=tools,
+    )
+
+    # Create tasks with shorter, simpler descriptions (to reduce LLM load)
+    task1 = Task(
+        description="""
+        Define a research plan for lithium battery patents:
+        1. Key technology areas to focus on
+        2. Time periods for analysis (focus on last 3 years)
+        3. Specific technological aspects to analyze
+        """,
+        expected_output="""A research plan with focus areas, time periods, and key technological aspects.""",
+        agent=research_director,
+    )
+
+    task2 = Task(
+        description="""
+        Using the research plan, retrieve patents related to lithium battery technology from the last 3 years.
+        Use the search_patents and search_patents_by_date_range tools to gather comprehensive data.
+        Focus on the most relevant and innovative patents.
+        Group patents by sub-technologies within lithium batteries.
+        Provide a summary of the retrieved patents, including:
+        - Total number of patents found
+        - Key companies/assignees
+        - Main technological categories
+        """,
+        expected_output="""A comprehensive patent retrieval report containing:
+        - Summary of total patents found
+        - List of key patents grouped by sub-technology
+        - Analysis of top companies/assignees
+        - Overview of main technological categories
+        - List of the most innovative patents with summaries
+        """,
+        agent=patent_retriever,
+        dependencies=[task1],
+    )
+
+    task3 = Task(
+        description="""
+        Analyze the retrieved patent data to identify trends and patterns:
+        1. Identify growing vs. declining areas of innovation
+        2. Analyze technology evolution over time
+        3. Identify key companies and their focus areas
+        4. Determine emerging sub-technologies within lithium batteries
+        5. Analyze patent claims to understand technological improvements
+        
+        Create a comprehensive analysis with specific trends, supported by data.
+        """,
+        expected_output="""A trend analysis report containing:
+        - Identification of growing vs. declining technology areas
+        - Timeline of technology evolution
+        - Company focus analysis
+        - Emerging sub-technologies list
+        - Technical improvement trends
+        - Data-backed conclusions on innovation patterns
+        """,
+        agent=data_analyst,
+        dependencies=[task2],
+    )
+
+    task4 = Task(
+        description="""
+        Based on the patent analysis, predict future innovations in lithium battery technology:
+        1. Identify technologies likely to see breakthroughs in the next 2-3 years
+        2. Recommend specific areas for R&D investment
+        3. Predict which companies are positioned to lead innovation
+        4. Identify potential disruptive technologies
+        5. Outline specific technical improvements likely to emerge
+        
+        Create a detailed forecast with specific technology predictions and justification.
+        """,
+        expected_output="""A future innovation forecast containing:
+        - Predicted breakthrough technologies for next 2-3 years
+        - Prioritized list of R&D investment areas
+        - Companies likely to lead future innovation
+        - Potential disruptive technologies and their impact
+        - Timeline of expected technical improvements
+        - Justification for all predictions based on patent data
+        """,
+        agent=innovation_forecaster,
+        dependencies=[task3],
+    )
+
+    # Create the crew with debugging enabled
+    crew = Crew(
+        agents=[
+            research_director,
+            patent_retriever,
+            data_analyst,
+            innovation_forecaster,
+        ],
+        tasks=[task1, task2, task3, task4],
+        verbose=True,
+        process=Process.sequential,
+        cache=False,  # Disable cache to prevent issues
+    )
+
+    return crew
 
 
 
