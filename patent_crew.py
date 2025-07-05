@@ -121,6 +121,17 @@ class SearchPatentsByDateRangeTool(BaseTool):
             return f"Error searching patents: {str(e)}"
         
 
+class AnalyzePatentTrendsTool(BaseTool):
+    name: str = "analyze_patent_trends"
+    description: str = "Analyze patent trends in patent data"
+
+    def _run(self, patents_data: str) -> str:
+        # This can use NLP to analyze trends
+        # Here, just returning the input data for simplicity
+        return f"Analysis of patent trends: {patents_data}"
+
+
+
 
 
 if __name__ == "__main__":
