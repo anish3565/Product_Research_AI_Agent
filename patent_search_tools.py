@@ -30,3 +30,12 @@ def keyword_search(query_text, top_k=20):
         print(f"Keyword search error: {e}")
         return []
 
+if __name__ == "__main__":
+    query = "lithum battery"
+
+    # Perform keyword search
+    print("Keyword Search Results:")
+    keyword_results = keyword_search(query)
+    for result in keyword_results:
+        print(result, end="\n\n")
+    
