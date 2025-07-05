@@ -67,10 +67,7 @@ def semantic_search(query_text, top_k=20):
     except Exception as e:
         print(f"Semantic search error: {e}")
         return []
-
-
-
-
+    
 
 if __name__ == "__main__":
     query = "lithum battery"
@@ -82,3 +79,8 @@ if __name__ == "__main__":
     #     print(result, end="\n\n")
 
     
+    # Perform semantic search
+    print("Semantic Search Results:")
+    semantic_results=semantic_search(query)
+    for result in semantic_results:
+        print(result, end="\n\n")
