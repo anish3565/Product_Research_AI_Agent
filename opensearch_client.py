@@ -1,6 +1,6 @@
 from opensearchpy import OpenSearch
 
-def get_openseach_client(host, port):
+def get_opensearch_client(host, port):
     client=OpenSearch(
         hosts=[{"host": host, "port":port}],
         http_compress=True,
@@ -70,7 +70,7 @@ def create_index_if_not_exists(client, index_name):
 if __name__=="__main__":
     host="localhost"
     port=9200
-    client=get_openseach_client(host, port)
+    client=get_opensearch_client(host, port)
 
     # List all indices
     indices=client.cat.indices(format="json")
