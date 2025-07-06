@@ -1,0 +1,12 @@
+2025-07-06 14:48:54,429 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 14:48:57,061 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 14:49:00,209 INFO:
+LiteLLM completion() model= llama2; provider = ollama
+2025-07-06 14:49:00,600 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+2025-07-06 14:49:00,634 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - {"error":"model 'llama2' not found"}
+2025-07-06 14:53:14,261 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 14:53:16,602 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 14:53:19,146 INFO:
+LiteLLM completion() model= llama2; provider = ollama
+2025-07-06 14:53:19,429 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+2025-07-06 14:53:19,461 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - {"error":"model 'llama2' not found"}

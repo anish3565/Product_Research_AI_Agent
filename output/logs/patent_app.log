@@ -1,0 +1,114 @@
+2025-07-06 15:00:48,093 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:00:51,300 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:00:54,996 INFO:
+LiteLLM completion() model= llama2; provider = ollama
+2025-07-06 15:00:55,287 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+2025-07-06 15:00:55,886 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - {"error":"model 'llama2' not found"}
+2025-07-06 15:01:15,628 INFO:HEAD http://localhost:9200/ [status:200 request:0.035s]
+2025-07-06 15:01:15,640 INFO:GET http://localhost:9200/ [status:200 request:0.012s]
+2025-07-06 15:01:17,983 ERROR:Search error
+Traceback (most recent call last):
+  File "M:\Patent_Project\agentic_rag.py", line 105, in search_patents
+    display_patent_results(results)
+  File "M:\Patent_Project\agentic_rag.py", line 41, in display_patent_results
+    print(f"\nFound {len(results)} results:")
+                     ^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2025-07-06 15:01:32,932 INFO:HEAD http://localhost:9200/ [status:200 request:0.020s]
+2025-07-06 15:01:32,940 INFO:GET http://localhost:9200/ [status:200 request:0.008s]
+2025-07-06 15:01:33,080 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.140s]
+2025-07-06 15:01:33,209 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.129s]
+2025-07-06 15:01:33,256 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.047s]
+2025-07-06 15:01:36,497 INFO:HEAD http://localhost:9200/ [status:200 request:0.026s]
+2025-07-06 15:01:36,505 INFO:GET http://localhost:9200/ [status:200 request:0.008s]
+2025-07-06 15:01:37,089 INFO:GET http://localhost:9200/_cat/indices?format=json [status:200 request:0.582s]
+2025-07-06 15:01:37,107 ERROR:Embedding model error
+Traceback (most recent call last):
+  File "M:\Patent_Project\agentic_rag.py", line 160, in check_system_status
+    from embedding import get_embedding
+ModuleNotFoundError: No module named 'embedding'
+2025-07-06 15:02:25,924 INFO:HEAD http://localhost:9200/ [status:200 request:0.026s]
+2025-07-06 15:02:25,932 INFO:GET http://localhost:9200/ [status:200 request:0.008s]
+2025-07-06 15:02:25,945 INFO:GET http://localhost:9200/_cat/indices?format=json [status:200 request:0.011s]
+2025-07-06 15:02:31,154 INFO:HEAD http://localhost:9200/ [status:200 request:0.023s]
+2025-07-06 15:02:31,159 INFO:GET http://localhost:9200/ [status:200 request:0.005s]
+2025-07-06 15:02:31,170 INFO:GET http://localhost:9200/_cat/indices?format=json [status:200 request:0.010s]
+2025-07-06 15:02:39,059 INFO:HEAD http://localhost:9200/ [status:200 request:0.020s]
+2025-07-06 15:02:39,068 INFO:GET http://localhost:9200/ [status:200 request:0.009s]
+2025-07-06 15:02:39,151 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.083s]
+2025-07-06 15:02:39,204 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.053s]
+2025-07-06 15:02:39,266 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.062s]
+2025-07-06 15:02:58,555 INFO:HEAD http://localhost:9200/ [status:200 request:0.016s]
+2025-07-06 15:02:58,562 INFO:GET http://localhost:9200/ [status:200 request:0.006s]
+2025-07-06 15:02:58,610 ERROR:Search error
+Traceback (most recent call last):
+  File "M:\Patent_Project\agentic_rag.py", line 105, in search_patents
+    display_patent_results(results)
+  File "M:\Patent_Project\agentic_rag.py", line 41, in display_patent_results
+    print(f"\nFound {len(results)} results:")
+                     ^^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2025-07-06 15:05:09,041 INFO:HEAD http://localhost:9200/ [status:200 request:0.023s]
+2025-07-06 15:05:09,047 INFO:GET http://localhost:9200/ [status:200 request:0.006s]
+2025-07-06 15:05:09,143 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.095s]
+2025-07-06 15:05:09,195 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.051s]
+2025-07-06 15:05:09,255 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.059s]
+2025-07-06 15:05:21,171 INFO:HEAD http://localhost:9200/ [status:200 request:0.022s]
+2025-07-06 15:05:21,176 INFO:GET http://localhost:9200/ [status:200 request:0.004s]
+2025-07-06 15:05:21,337 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.117s]
+2025-07-06 15:05:47,156 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:05:49,947 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:05:52,530 INFO:
+LiteLLM completion() model= llama2; provider = ollama
+2025-07-06 15:05:52,825 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+2025-07-06 15:05:52,851 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - {"error":"model 'llama2' not found"}
+2025-07-06 15:06:27,324 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:06:28,211 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:06:29,024 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:07:28,158 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:07:28,536 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:07:28,538 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:07:28,538 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:07:28,631 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:07:28,641 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:07:28,675 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:07:28,719 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:07:28,723 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:07:28,793 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:07:28,863 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,085 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,087 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:08:28,088 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:08:28,088 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:08:28,176 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,176 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,216 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:08:28,259 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,261 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:08:28,337 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:08:28,409 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,326 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,331 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:10:03,331 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:03,332 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:03,421 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,423 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,478 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:10:03,511 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,515 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:03,613 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:03,714 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:58,642 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:10:58,645 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:10:58,645 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:58,645 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:58,738 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:58,742 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:58,990 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:58,991 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:10:59,055 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:10:59,119 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
