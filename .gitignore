@@ -6,3 +6,5 @@ venv/
 results/
 *.pyc
 files/
+output/
+outputs/
