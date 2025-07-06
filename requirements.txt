@@ -5,3 +5,4 @@ tiktoken
 crewai==0.126.0
 langchain-core
 langchain-ollama
+streamlit
