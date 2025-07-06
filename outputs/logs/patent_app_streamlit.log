@@ -1,0 +1,71 @@
+2025-07-06 15:28:15,194 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:28:18,310 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:28:22,324 INFO:
+LiteLLM completion() model= llama2; provider = ollama
+2025-07-06 15:28:22,640 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 404 Not Found"
+2025-07-06 15:28:22,740 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - {"error":"model 'llama2' not found"}
+2025-07-06 15:31:55,916 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:31:56,874 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:31:57,797 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:32:49,051 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:32:49,458 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:32:49,460 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:32:49,461 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:32:49,558 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:32:49,566 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:32:49,611 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:32:49,667 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:32:49,669 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:32:49,738 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:32:49,814 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,688 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,691 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:34:03,691 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:34:03,691 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:34:03,758 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,765 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,803 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:34:03,827 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,827 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:34:03,897 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:34:03,973 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:35:10,819 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:35:10,820 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:35:10,821 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:35:10,821 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:35:10,895 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:35:10,896 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:35:10,932 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-06 15:35:10,971 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:35:10,972 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:35:11,046 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:35:11,125 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,315 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,320 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-06 15:36:16,320 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:36:16,320 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:36:16,389 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,389 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,542 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,543 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-06 15:36:16,597 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:36:16,660 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-06 15:39:22,255 INFO:HEAD http://localhost:9200/ [status:200 request:0.070s]
+2025-07-06 15:39:22,275 INFO:GET http://localhost:9200/ [status:200 request:0.021s]
+2025-07-06 15:39:22,473 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.198s]
+2025-07-06 15:40:55,936 INFO:HEAD http://localhost:9200/ [status:200 request:0.008s]
+2025-07-06 15:40:55,945 INFO:GET http://localhost:9200/ [status:200 request:0.009s]
+2025-07-06 15:40:56,040 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.094s]
+2025-07-06 15:40:56,093 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.054s]
+2025-07-06 15:40:56,144 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.049s]
+2025-07-06 15:40:56,193 INFO:POST http://localhost:9200/patents/_search [status:200 request:0.050s]
+2025-07-06 15:41:29,925 INFO:HEAD http://localhost:9200/ [status:200 request:0.005s]
+2025-07-06 15:41:29,932 INFO:GET http://localhost:9200/ [status:200 request:0.007s]
+2025-07-06 15:41:29,976 INFO:GET http://localhost:9200/_cat/indices?format=json [status:200 request:0.042s]
+2025-07-06 15:41:37,338 INFO:HEAD http://localhost:9200/ [status:200 request:0.008s]
+2025-07-06 15:41:37,343 INFO:GET http://localhost:9200/ [status:200 request:0.004s]
+2025-07-06 15:41:37,358 INFO:GET http://localhost:9200/_cat/indices?format=json [status:200 request:0.014s]
