@@ -37,16 +37,16 @@ A cutting-edge AI-driven system that intelligently analyzes, explores, and forec
 ```
 Patent_Predictor/
 ├── embeddings/                     # Embedding generation logic
-├── opensearch_client/             # OpenSearch client setup
+├── opensearch_client/              # OpenSearch client setup
 ├── outputs/
-│   ├── logs/                      # System logs and agent run diagnostics
-│   └── patent_analysis/          # Saved analytical reports
-├── patent_search_tools.py        # Implements search types
-├── patent_crew.py                # Defines CrewAI agents & task pipelines
-├── agentic_rag.py                # Terminal-based CLI interface
-├── app.py                        # Streamlit GUI
-├── requirements.txt              # Dependencies
-└── README.md                     # This file
+│   ├── logs/                       # System logs and agent run diagnostics
+│   └── patent_analysis/            # Saved analytical reports
+├── patent_search_tools.py          # Implements search types
+├── patent_crew.py                  # Defines CrewAI agents & task pipelines
+├── agentic_rag.py                  # Terminal-based CLI interface
+├── app.py                          # Streamlit GUI
+├── requirements.txt                # Dependencies
+└── README.md                       # This file
 ```
 
 ---
@@ -127,7 +127,7 @@ python agentic_rag.py
 Run the graphical UI:
 
 ```bash
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
 ### Features:
