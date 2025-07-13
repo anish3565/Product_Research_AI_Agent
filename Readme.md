@@ -1,6 +1,6 @@
 # 🔋 Patent Innovation Predictor
 
-A cutting-edge AI-driven system that intelligently analyzes, explores, and forecasts innovation patterns in **Patents data and predict future innovations in specific technology areas**. This project fuses the power of **LLMs**, **vector databases**, and **multi-agent workflows** to deliver actionable insights for researchers, strategists, and R\&D leaders. Equipped with both CLI and GUI, it supports exploratory search, semantic retrieval, trend forecasting, and more.
+A cutting-edge AI-driven system that intelligently analyzes, explores, and forecasts innovation patterns in **Patents data and predict future innovations in specific technology areas**. This project fuses the power of **LLMs**, **vector databases**, and **multi-agent workflows** to deliver actionable insights for researchers, strategists, and R\&D leaders. Equipped with both CLI and GUI, it supports exploratory search, semantic retrieval, trend forecasting, and more. 
 
 ---
 
