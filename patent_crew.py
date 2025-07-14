@@ -10,7 +10,7 @@ from langchain_ollama import OllamaLLM
 
 from opensearch_client import get_opensearch_client
 
-# Check Ollama model availability
+# Checking Ollama model availability
 def check_ollama_availability():
     try:
         response = requests.get("http://localhost:11434/api/tags", timeout=5)
@@ -21,7 +21,7 @@ def check_ollama_availability():
         print(f"Error connecting to Ollama: {e}")
         return []
 
-# Test the model with a simple prompt
+# Testing the model with a simple prompt
 def test_model(model_name):
     try:
         llm = OllamaLLM(model=model_name, temperature=0.2)
@@ -42,7 +42,7 @@ def test_model(model_name):
             print(f"⚠️ Error testing model '{model_name}': {e}")
         return False
 
-# Define custom tools by extending BaseTool from CrewAI
+# Custom tools by extending BaseTool from CrewAI
 class SearchPatentsTool(BaseTool):
     name: str = "search_patents"
     description: str = "Search for patents matching a query"
@@ -61,7 +61,7 @@ class SearchPatentsTool(BaseTool):
             response = client.search(index=index_name, body=search_query)
             results = response["hits"]["hits"]
 
-            # Format results as a string for better LLM consumption
+            # Formatting results as a string for better LLM consumption
             formatted_results = []
             for i, hit in enumerate(results):
                 source = hit["_source"]
@@ -106,7 +106,7 @@ class SearchPatentsByDateRangeTool(BaseTool):
             response = client.search(index=index_name, body=search_query)
             results = response["hits"]["hits"]
 
-            # Format results as a string
+            # Formatting results as a string
             formatted_results = []
             for i, hit in enumerate(results):
                 source = hit["_source"]
@@ -127,8 +127,6 @@ class AnalyzePatentTrendsTool(BaseTool):
     description: str = "Analyze patent trends in patent data"
 
     def _run(self, patents_data: str) -> str:
-        # This can use NLP to analyze trends
-        # Here, just returning the input data for simplicity
         return f"Analysis of patent trends: {patents_data}"
 
 
@@ -149,26 +147,26 @@ def create_patent_analysis_crew(model_name="llama3"):
     if not available_models:
         raise ValueError("No available models found in Ollama. Please ensure Ollama is running and models are installed.")
 
-    # Test model
+    # Testing model
     if not test_model(model_name):
         raise ValueError(f"Model '{model_name}' is not working. Please check the model or pull it manually.")
 
     print("Modee found and tested successfully.")
 
-    # Fix the model format by adding the 'ollama/' prefix
+    # Fixing the model format by adding the 'ollama/' prefix
     if not model_name.startswith("ollama/"):
         model_name = f"ollama/{model_name}"
 
     llm = OllamaLLM(model=model_name, temperature=0.2)
 
-    # Create tools using CrewAI's BaseTool subclasses
+    # Creating tools using CrewAI's BaseTool subclasses
     tools = [
         SearchPatentsTool(),
         SearchPatentsByDateRangeTool(),
         AnalyzePatentTrendsTool()
     ]
 
-    # Create agents with the correct tools and LLM
+    # Create agents
     research_director = Agent(
         role="Research Director",
         goal="Coordinate research efforts and define the scope of patent analysis",
@@ -209,7 +207,7 @@ def create_patent_analysis_crew(model_name="llama3"):
         tools=tools,
     )
 
-    # Create tasks with shorter, simpler descriptions (to reduce LLM load)
+    # Creatnig tasks with shorter, simpler descriptions
     task1 = Task(
         description="""
         Define a research plan for lithium battery patents:
@@ -289,7 +287,7 @@ def create_patent_analysis_crew(model_name="llama3"):
         dependencies=[task3],
     )
 
-    # Create the crew with debugging enabled
+    # Create the crew and enabling debugging
     crew = Crew(
         agents=[
             research_director,
@@ -300,7 +298,7 @@ def create_patent_analysis_crew(model_name="llama3"):
         tasks=[task1, task2, task3, task4],
         verbose=True,
         process=Process.sequential,
-        cache=False,  # Disable cache to prevent issues
+        cache=False,
     )
 
     return crew
@@ -323,13 +321,13 @@ def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
 
         # Extract the string output from the CrewOutput object
         if hasattr(result, "output"):
-            # Recent CrewAI versions store results in the 'output' attribute
+            # CrewAI storing results in the 'output' attribute
             return result.output
         elif hasattr(result, "result"):
-            # Some versions might use 'result'
+            # Some versions might are using 'result'
             return result.result
         else:
-            # Last resort - convert to string
+            # Converting to string
             return str(result)
     except Exception as e:
         return (
@@ -340,9 +338,8 @@ def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
             + "4. Try a simpler model or reduce task complexity"
         )
 
-# Main execution
 if __name__ == "__main__":
-    # Get the research area from user input
+    # Getting the research area from user input
     research_area = input(
         "Enter the research area to analyze (default: Lithium Battery): "
     )
@@ -352,7 +349,7 @@ if __name__ == "__main__":
     # Get the model name from user input
     model_name = input("Enter the Ollama model to use: ")
     if not model_name:
-        model_name = "llama2"
+        model_name = "llama2:latest"
 
     # Run the analysis
     result = run_patent_analysis(research_area, model_name)
