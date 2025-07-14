@@ -131,7 +131,7 @@ class AnalyzePatentTrendsTool(BaseTool):
 
 
 # Agent setup
-def create_patent_analysis_crew(model_name="llama3"):
+def create_patent_analysis_crew(model_name="llama2:latest"):
     """
     Create a CrewAI crew for patent analysis using Ollama.
 
@@ -210,7 +210,7 @@ def create_patent_analysis_crew(model_name="llama3"):
     # Creatnig tasks with shorter, simpler descriptions
     task1 = Task(
         description="""
-        Define a research plan for lithium battery patents:
+        Define a research plan for patents area:
         1. Key technology areas to focus on
         2. Time periods for analysis (focus on last 3 years)
         3. Specific technological aspects to analyze
@@ -221,7 +221,7 @@ def create_patent_analysis_crew(model_name="llama3"):
 
     task2 = Task(
         description="""
-        Using the research plan, retrieve patents related to lithium battery technology from the last 3 years.
+        Using the research plan, retrieve patents related to mentioned technology from the last 3 years.
         Use the search_patents and search_patents_by_date_range tools to gather comprehensive data.
         Focus on the most relevant and innovative patents.
         Group patents by sub-technologies within lithium batteries.
@@ -266,7 +266,7 @@ def create_patent_analysis_crew(model_name="llama3"):
 
     task4 = Task(
         description="""
-        Based on the patent analysis, predict future innovations in lithium battery technology:
+        Based on the patent analysis, predict future innovations in the mentioned technology:
         1. Identify technologies likely to see breakthroughs in the next 2-3 years
         2. Recommend specific areas for R&D investment
         3. Predict which companies are positioned to lead innovation
@@ -304,12 +304,12 @@ def create_patent_analysis_crew(model_name="llama3"):
     return crew
 
 
-def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
+def run_patent_analysis(research_area, model_name="llama2:latest"):
     """
     Run the patent analysis crew for the specified research area.
 
     Args:
-        research_area (str): The research area to analyze (e.g., "Lithium Battery")
+        research_area (str): The research area to analyze
         model_name (str): Ollama model to use
 
     Returns:
@@ -333,36 +333,54 @@ def run_patent_analysis(research_area="Lithium Battery", model_name="llama3"):
         return (
             f"Analysis failed: {str(e)}\n\nTroubleshooting tips:\n"
             + "1. Make sure Ollama is running: 'ollama serve'\n"
-            + "2. Pull a compatible model: 'ollama pull llama3' or 'ollama pull mistral'\n"
+            + "2. Pull a compatible model: 'ollama pull llama2:latest' or 'ollama pull mistral'\n"
             + "3. Check Ollama logs for errors\n"
             + "4. Try a simpler model or reduce task complexity"
         )
 
 if __name__ == "__main__":
-    # Getting the research area from user input
-    research_area = input(
-        "Enter the research area to analyze (default: Lithium Battery): "
-    )
+    print("\n============================")
+    print("  PATENT ANALYSIS TOOL")
+    print("============================\n")
+
+    # 1. Research area input
+    research_area = input("Enter the research area to analyze: ").strip()
     if not research_area:
         research_area = "Lithium Battery"
 
-    # Get the model name from user input
-    model_name = input("Enter the Ollama model to use: ")
-    if not model_name:
-        model_name = "llama2:latest"
+    # 2. Fetch available models dynamically
+    models = check_ollama_availability()
+    if not models:
+        print("❌ No models found in Ollama. Make sure 'ollama serve' is running and models are pulled.")
+        exit()
 
-    # Run the analysis
+    print("\n📦 Available Ollama Models:")
+    for idx, model in enumerate(models):
+        print(f"  {idx + 1}. {model}")
+
+    # 3. Prompt user to select one
+    selected_index = input(f"\nSelect a model (1-{len(models)}): ").strip()
+    if not selected_index.isdigit() or int(selected_index) not in range(1, len(models) + 1):
+        print("❌ Invalid selection. Using default model: llama2")
+        model_name = "llama2"
+    else:
+        model_name = models[int(selected_index) - 1]
+
+    # 4. Run the crew-based analysis
     result = run_patent_analysis(research_area, model_name)
 
-    # Save results to file
+    # 5. Save results in organized folder
+    from pathlib import Path
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"patent_analysis_{timestamp}.txt"
+    save_dir = Path("outputs/patent_analysis")
+    save_dir.mkdir(parents=True, exist_ok=True)
+    file_path = save_dir / f"patent_analysis_{timestamp}.txt"
 
-    # Ensure result is a string before writing to file
+    # Ensure result is string before writing
     if not isinstance(result, str):
         result = str(result)
 
-    with open(filename, "w") as f:
+    with open(file_path, "w", encoding="utf-8") as f:
         f.write(result)
 
-    print(f"Analysis completed and saved to {filename}")
+    print(f"\n✅ Analysis completed and saved to {file_path.resolve()}")
