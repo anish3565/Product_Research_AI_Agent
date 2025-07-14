@@ -54,7 +54,7 @@ def display_patent_results(results, show_score=True):
 def run_complete_analysis():
     print("\nRunning comprehensive patent analysis...")
     research_area = input("Enter research area (default: Lithium Battery): ") or "Lithium Battery"
-    model_name = input("Enter the Ollama model to use (default: llama2): ") or "llama2"
+    model_name = input("Enter the Ollama model to use (default: llama2:latest): ") or "llama2:latest"
 
     print(f"\nAnalyzing patents for: {research_area}")
     print(f"Using Ollama model: {model_name}")
