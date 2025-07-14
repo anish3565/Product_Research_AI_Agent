@@ -35,7 +35,7 @@ def get_ollama_models():
         pass
     return []
 
-ollama_models = get_ollama_models() or ["llama2", "llama3"]
+ollama_models = get_ollama_models() or ["llama2:latest", "deepseek-r1:1.5b"]
 
 # Title
 st.markdown("""
