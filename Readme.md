@@ -1,52 +1,57 @@
 # 🔋 Patent Innovation Predictor
 
-A cutting-edge AI-driven system that intelligently analyzes, explores, and forecasts innovation patterns in **Patents data and predict future innovations in specific technology areas**. This project fuses the power of **LLMs**, **vector databases**, and **multi-agent workflows** to deliver actionable insights for researchers, strategists, and R\&D leaders. Equipped with both CLI and GUI, it supports exploratory search, semantic retrieval, trend forecasting, and more. 
+A cutting-edge AI-powered system that intelligently analyzes, explores, and forecasts innovation patterns in **patent datasets** across **diverse technology domains**. This project blends the strengths of **LLMs**, **vector databases**, **semantic search**, **SerpAPI**, and **multi-agent reasoning** into a unified tool that aids R\&D leaders, analysts, and strategists.
+
+It provides both **CLI and GUI** interfaces to explore patent data, refine search results, generate insights, and forecast future trends.
 
 ---
 
 ## 🚀 Key Capabilities
 
 * 🔍 **Keyword, Semantic & Hybrid Patent Search** using OpenSearch
-* 🤖 **Multi-Agent Workflow** powered by CrewAI for deep patent analysis
-* 🔄 **Iterative Search Refinement** for precision-driven discovery
-* 📈 **Trend Forecasting** for identifying emerging innovations and R\&D opportunities
-* 🌐 **Interactive Streamlit Dashboard** with real-time inputs and visual feedback
-* 🗂 **Structured Logs & Reports** stored in dedicated subdirectories
-* 💻 **Dual Interface**: Command Line & GUI for maximum flexibility
-* ⚙️ **Extensible Design** for future tech domains beyond batteries
+* 🤖 **Multi-Agent Analysis** (CrewAI) for scoped, role-based patent forecasting
+* 🔁 **Iterative Refinement** of search queries based on results
+* 📈 **Trend Forecasting** to identify innovation hotspots and research gaps
+* 🌐 **Streamlit Interface** for intuitive exploration and export
+* 🔌 **SerpAPI Integration** for live patent updates and augmenting search results
+* 📁 **Structured Outputs** in logs and reports folders for reproducibility
+* 💻 **Dual Modes**: Command Line and GUI-based for maximum usability
 
 ---
 
 ## 🧰 Technology Stack
 
-| Component             | Description                                                                         |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| **Python**            | Core programming language                                                           |
-| **Ollama**            | Local LLM runtime for private, fast generation with models like `llama2:latest`, `mistral:7b` |
-| **LangChain**         | Manages LLM chains and prompt templates                                             |
-| **CrewAI**            | Orchestrates agent roles and task dependencies                                      |
-| **OpenSearch**        | Enables vector & keyword-based patent search                                        |
-| **Docker**            | Ensures consistent, portable OpenSearch deployment                                  |
-| **Streamlit**         | Builds interactive user interfaces                                                  |
-| **Logging & Reports** | Records agent interactions and stores analytical output                             |
+| Component      | Role & Importance                                                                      |
+| -------------- | -------------------------------------------------------------------------------------- |
+| **Python**     | Core programming language                                                              |
+| **Ollama**     | Local LLM runtime for efficient, offline model execution                               |
+| **LangChain**  | Chains prompts and manages context through modular pipelines                           |
+| **CrewAI**     | Defines collaborative agents and task workflows                                        |
+| **OpenSearch** | Search engine for hybrid (vector + keyword) querying over patent documents             |
+| **Docker**     | Deploys OpenSearch reliably in isolated environments                                   |
+| **Streamlit**  | Builds the interactive graphical dashboard                                             |
+| **SerpAPI**    | Enables real-time enrichment from the web (e.g., fresh patent listings, market trends) |
+| **.env**       | Secures sensitive environment variables like API keys                                  |
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
 ```
 Patent_Predictor/
-├── embeddings/                     # Embedding generation logic
-├── opensearch_client/              # OpenSearch client setup
+├── embeddings/                     # Embedding model configuration & logic
+│   └── get_embedding.py
+├── opensearch_client/              # OpenSearch connection wrapper
+│   └── get_opensearch_client.py
 ├── outputs/
-│   ├── logs/                       # System logs and agent run diagnostics
-│   └── patent_analysis/            # Saved analytical reports
-├── patent_search_tools.py          # Implements search types
-├── patent_crew.py                  # Defines CrewAI agents & task pipelines
-├── agentic_rag.py                  # Terminal-based CLI interface
-├── app.py                          # Streamlit GUI
-├── requirements.txt                # Dependencies
-└── README.md                       # This file
+│   ├── logs/                       # LLM logs and agent diagnostics
+│   └── patent_analysis/           # Generated reports and summaries
+├── patent_search_tools.py         # Search logic: semantic, keyword, hybrid, iterative
+├── patent_crew.py                 # Agent setup and forecasting pipeline using CrewAI
+├── agentic_rag.py                 # CLI interface controller
+├── app.py                         # Streamlit GUI application
+├── requirements.txt               # Python dependencies
+└── README.md                      # This file
 ```
 
 ---
@@ -56,116 +61,104 @@ Patent_Predictor/
 ### ✅ Prerequisites
 
 * Python 3.9+
-* Docker (to run OpenSearch locally)
-* [Ollama](https://ollama.com/) (to run LLMs on your machine)
+* Docker (for OpenSearch)
+* [Ollama](https://ollama.com/) (to run LLMs locally)
+* (Optional) [SerpAPI Key](https://serpapi.com/) for live web enrichment
 
-### 📦 Installation
+### 🧪 Installation
 
 ```bash
-# Clone the repo
-git clone https://github.com/yourusername/Patent_Predictor.git
-cd Patent_Predictor
+# Clone repository
+$ git clone https://github.com/yourusername/Patent_Predictor.git
+$ cd Patent_Predictor
 
-# Setup virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Setup Python environment
+$ python -m venv venv
+$ source venv/bin/activate  # or venv\Scripts\activate (Windows)
 
-# Install dependencies
-pip install -r requirements.txt
+# Install Python packages
+$ pip install -r requirements.txt
+```
+
+### 🧠 Ollama Setup (Local LLM)
+
+```bash
+# Start the Ollama server
+$ ollama serve
+
+# Pull a desired model (e.g. llama2, mistral)
+$ ollama pull llama2:latest
+```
+---
+
+## 🧪 CLI Interface
+
+Run the CLI-based interactive menu:
+
+```bash
+$ python agentic_rag.py
 ```
 
 ---
 
-## 🐳 OpenSearch Setup (via Docker)
+### Available Options:
 
-```bash
-docker run -d --name opensearch -p 9200:9200 -p 9600:9600 \
-  -e "discovery.type=single-node" \
-  -e "plugins.security.disabled=true" \
-  opensearchproject/opensearch:2.11.0
-```
-
-* Access: [http://localhost:9200](http://localhost:9200)
-
----
-
-## 🧠 Ollama Setup
-
-```bash
-# Install Ollama from https://ollama.com
-
-# Start the LLM server
-ollama serve
-
-# Pull your preferred model (e.g., llama2:latest)
-ollama pull llama2:latest
-```
-
----
-
-## 🧪 Command-Line Interface (CLI)
-
-Launch the agentic CLI workflow:
-
-```bash
-python agentic_rag.py
-```
-
-### Menu Options:
-
-1. Full trend analysis and forecasting
-2. Keyword / Semantic / Hybrid patent search
-3. Iterative multi-step exploration
-4. View system and LLM status
-5. List available Ollama models
+1. Run full patent forecasting pipeline
+2. Search patents (Keyword, Semantic, Hybrid)
+3. Perform multi-step refinement search
+4. View Ollama system status
+5. List locally available models
 6. Exit
 
 ---
 
-## 🌐 Streamlit Dashboard
+## 🌐 Streamlit UI
 
-Run the graphical UI:
+Launch the graphical interface:
 
 ```bash
-streamlit run streamlit_app.py
+$ streamlit run app.py
 ```
 
 ### Features:
 
-* Dropdowns for **search type** and **model selection**
-* Query input and **result visualization**
-* Real-time model validation and feedback
-* Exportable summaries and logs
+* Choose **search type** (keyword, semantic, hybrid)
+* Select **LLM model** from dynamic Ollama model list
+* Input patent queries with result ranking
+* Visual summary, PDF export, logs display
+* Dynamic status panel with live feedback
 
 ---
 
-## 👨‍💻 Agentic Workflow (CrewAI)
+## 🤖 Agentic Pipeline (CrewAI)
 
-| Agent Role              | Description                                       |
-| ----------------------- | ------------------------------------------------- |
-| `Research Director`     | Defines scope, key tech areas, and analysis goals |
-| `Patent Retriever`      | Performs hybrid retrieval from OpenSearch         |
-| `Patent Analyst`        | Extracts patterns, company strengths, and trends  |
-| `Innovation Forecaster` | Projects future breakthroughs and R\&D focus      |
+| Agent Role                | Responsibility                                               |
+| ------------------------- | ------------------------------------------------------------ |
+| **Research Director**     | Defines problem scope, time range, and tech objectives       |
+| **Patent Retriever**      | Queries OpenSearch and external sources for relevant patents |
+| **Patent Analyst**        | Detects trends, leading companies, innovation categories     |
+| **Innovation Forecaster** | Predicts next-gen technologies, recommends R\&D directions   |
 
-⛓ These agents collaborate sequentially using **CrewAI**, allowing complex, dependent reasoning across the pipeline.
-
----
-
-## 🔬 Functional Highlights
-
-* ✅ LLM-backed **automated literature mining** across 1000s of patents
-* 🔄 Real-time **query optimization** using iterative context-building
-* 🧩 Built-in fallback logic to ensure smooth execution even with LLM or OpenSearch issues
-* 📂 Export-ready reports for downstream workflows or business use
-* 🛡️ Fully **local execution** for secure research environments
+Each role is powered by a separate LLM instance and chained using `CrewAI` to simulate human-like task delegation and reasoning.
 
 ---
 
-## 📬 Author & Contact
+## 🔬 Core Functionalities
+
+* 🔍 Unified **Hybrid Search**: combines keyword and vector queries
+* ⛓️ **Multi-step Reasoning**: through sequential agent pipelines
+* 📈 **Forecast Module**: predicts R\&D areas to watch or invest in
+* 📡 **SerpAPI Integration**: optional fresh data fetching for better accuracy
+* 🧠 **Offline LLM Inference**: runs via Ollama without cloud latency or API limits
+* 💾 **Full traceability**: logs and agent traces are exportable for auditing
+
+---
+
+## 📬 Contact & Author
 
 **Anish Tripathi**
-🔹 AI/ML Developer | NLP | Vector Databases | RAG Architectures
-🔗 [GitHub](https://github.com/anish3565) | 📧 [tripathianish12@gmail.com](mailto:tripathianish12@gmail.com)
+🔹 AI/ML Developer | LLM Engineering | Semantic Search | Vector DBs | RAG Workflows
+🔗 [GitHub](https://github.com/anish3565)
+📧 [tripathianish12@gmail.com](mailto:tripathianish12@gmail.com)
 
 ---
