@@ -33,9 +33,9 @@ def run_complete_analysis():
         research_area = "Lithium Battery"
 
     # Ask for the Ollama model to use
-    model_name = input("Enter the Ollama model to use (default: llama2): ")
+    model_name = input("Enter the Ollama model to use (default: llama2:latest): ")
     if not model_name:
-        model_name = "llama2"
+        model_name = "llama2:latest"
 
     print(f"\nAnalyzing patents for: {research_area}")
     print(f"Using Ollama model: {model_name}")
