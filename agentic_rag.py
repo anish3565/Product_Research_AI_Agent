@@ -25,7 +25,7 @@ logging.basicConfig(
 # Utility: Display Main Menu
 def display_menu():
     print("\n" + "=" * 60)
-    print("  PATENT INNOVATION PREDICTOR - LITHIUM BATTERY TECHNOLOGY")
+    print("  PATENT INNOVATION PREDICTOR")
     print("=" * 60)
     print("1. Run complete patent trend analysis and forecasting")
     print("2. Search for specific patents")
@@ -53,7 +53,7 @@ def display_patent_results(results, show_score=True):
 # Option 1: Run Patent Analysis
 def run_complete_analysis():
     print("\nRunning comprehensive patent analysis...")
-    research_area = input("Enter research area (default: Lithium Battery): ") or "Lithium Battery"
+    research_area = input("Enter research area") or "Lithium Battery"
     model_name = input("Enter the Ollama model to use (default: llama2:latest): ") or "llama2:latest"
 
     print(f"\nAnalyzing patents for: {research_area}")
