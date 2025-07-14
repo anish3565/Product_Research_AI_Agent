@@ -62,8 +62,8 @@ Patent_Predictor/
 
 * Python 3.9+
 * Docker (for OpenSearch)
-* [Ollama](https://ollama.com/) (to run LLMs locally)
-* (Optional) [SerpAPI Key](https://serpapi.com/) for live web enrichment
+* Ollama (to run LLMs locally)
+* SerpAPI Key for live web enrichment
 
 ### 🧪 Installation
 
