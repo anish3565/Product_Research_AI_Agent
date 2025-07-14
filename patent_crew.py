@@ -151,7 +151,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
     if not test_model(model_name):
         raise ValueError(f"Model '{model_name}' is not working. Please check the model or pull it manually.")
 
-    print("Modee found and tested successfully.")
+    print("Model found and tested successfully.")
 
     # Fixing the model format by adding the 'ollama/' prefix
     if not model_name.startswith("ollama/"):
