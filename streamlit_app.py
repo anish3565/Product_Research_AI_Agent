@@ -44,7 +44,7 @@ st.markdown("""
         background-color: #f6f1ee;
     }
     </style>
-    <h1 style='text-align: center; color: #005b96;'>🔋 Patent Innovation Predictor - Lithium Battery Tech</h1>
+    <h1 style='text-align: center; color: #005b96;'>🔋 Patent Innovation Predictor</h1>
 """, unsafe_allow_html=True)
 
 # Sidebar Navigation
@@ -58,7 +58,7 @@ page = st.sidebar.selectbox("Choose Operation", [
 
 if page == "Patent Trend Analysis":
     st.subheader("📊 Comprehensive Patent Trend Analysis")
-    research_area = st.text_input("Enter research area:", "Lithium Battery")
+    research_area = st.text_input("Enter research area:", "", placeholder="Lithium Battery")
     model_name = st.selectbox("Select Ollama model:", ollama_models)
     if st.button("Run Analysis"):
         if not test_model(model_name):
