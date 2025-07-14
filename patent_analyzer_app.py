@@ -12,7 +12,7 @@ from patent_search_tools import hybrid_search, iterative_search, semantic_search
 def display_menu():
     """Display the main menu options"""
     print("\n" + "=" * 60)
-    print("  PATENT INNOVATION PREDICTOR - LITHIUM BATTERY TECHNOLOGY  ")
+    print("  PATENT INNOVATION PREDICTOR")
     print("=" * 60)
     print("1. Run complete patent trend analysis and forecasting")
     print("2. Search for specific patents")
@@ -28,7 +28,7 @@ def run_complete_analysis():
     print("\nRunning comprehensive patent analysis...")
     print("This may take several minutes depending on the data volume.")
 
-    research_area = input("Enter research area (default: Lithium Battery): ")
+    research_area = input("Enter research area : ")
     if not research_area:
         research_area = "Lithium Battery"
 
