@@ -118,9 +118,39 @@ def iterative_search(query_text, refinement_steps=3, top_k=20):
     return all_results or []
 
 if __name__ == "__main__":
-    query = "lithium battery"
+    print("PATENT SEARCH TOOL")
+    print("-" * 50)
 
-    print("Hybrid Search Results:")
-    hybrid_results = hybrid_search(query)
-    for result in hybrid_results:
-        print(result, end="\n\n")
+    query = input("Enter your search query: ").strip()
+    if not query:
+        print("⚠️ No query entered. Exiting.")
+        exit()
+
+    print("\nSelect search type:")
+    print("1. Keyword Search")
+    print("2. Semantic Search")
+    print("3. Hybrid Search")
+    print("4. Iterative Search")
+    choice = input("Enter your choice (1-4): ").strip()
+
+    print("\n🔍 Searching...\n")
+
+    if choice == "1":
+        results = keyword_search(query)
+    elif choice == "2":
+        results = semantic_search(query)
+    elif choice == "3":
+        results = hybrid_search(query)
+    elif choice == "4":
+        results = iterative_search(query)
+    else:
+        print("❌ Invalid choice.")
+        exit()
+
+    print(f"\n✅ Found {len(results)} result(s):\n")
+    for i, result in enumerate(results, 1):
+        source = result["_source"]
+        print(f"{i}. Title: {source.get('title')}")
+        print(f"   Date: {source.get('publication_date')}")
+        print(f"   Patent ID: {source.get('patent_id')}")
+        print(f"   Abstract: {source.get('abstract', '')[:200]}...\n")
