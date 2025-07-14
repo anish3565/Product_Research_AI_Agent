@@ -22,7 +22,7 @@ A cutting-edge AI-driven system that intelligently analyzes, explores, and forec
 | Component             | Description                                                                         |
 | --------------------- | ----------------------------------------------------------------------------------- |
 | **Python**            | Core programming language                                                           |
-| **Ollama**            | Local LLM runtime for private, fast generation with models like `llama2`, `mistral` |
+| **Ollama**            | Local LLM runtime for private, fast generation with models like `llama2:latest`, `mistral:7b` |
 | **LangChain**         | Manages LLM chains and prompt templates                                             |
 | **CrewAI**            | Orchestrates agent roles and task dependencies                                      |
 | **OpenSearch**        | Enables vector & keyword-based patent search                                        |
@@ -97,8 +97,8 @@ docker run -d --name opensearch -p 9200:9200 -p 9600:9600 \
 # Start the LLM server
 ollama serve
 
-# Pull your preferred model (e.g., llama2)
-ollama pull llama2
+# Pull your preferred model (e.g., llama2:latest)
+ollama pull llama2:latest
 ```
 
 ---
@@ -159,16 +159,6 @@ streamlit run streamlit_app.py
 * 🧩 Built-in fallback logic to ensure smooth execution even with LLM or OpenSearch issues
 * 📂 Export-ready reports for downstream workflows or business use
 * 🛡️ Fully **local execution** for secure research environments
-
----
-
-## 🏆 Why This Project Stands Out
-
-✔ Demonstrates **LLMs beyond chatbots**—real-world research augmentation
-✔ Incorporates **RAG, agents, and search** into a unified workflow
-✔ Enables analysts to move from search → insight → strategy in one tool
-✔ Runs entirely **offline with open-source components**
-✔ Excellent base for **enterprise AI adoption** or **IP consulting firms**
 
 ---
 
