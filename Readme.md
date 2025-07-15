@@ -1,5 +1,7 @@
 # 🔋 Patent Innovation Predictor
 
+![Uploading Patent_Analysis_App.png…]()
+
 A cutting-edge AI-powered system that intelligently analyzes, explores, and forecasts innovation patterns in **patent datasets** across **diverse technology domains**. This project blends the strengths of **LLMs**, **vector databases**, **semantic search**, **SerpAPI**, and **multi-agent reasoning** into a unified tool that aids R\&D leaders, analysts, and strategists.
 
 It provides both **CLI and GUI** interfaces to explore patent data, refine search results, generate insights, and forecast future trends.
