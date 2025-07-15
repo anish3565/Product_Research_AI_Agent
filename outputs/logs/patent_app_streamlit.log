@@ -199,3 +199,141 @@ LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
 2025-07-14 14:53:22,003 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
 2025-07-14 14:53:22,089 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
 2025-07-14 14:53:22,243 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:17:45,725 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:17:51,281 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:17:53,524 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:18:40,296 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:18:40,301 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:18:40,302 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:18:40,303 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:18:42,409 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:18:42,412 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:18:42,451 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:18:42,477 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:18:42,478 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:18:42,547 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:18:42,621 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:19:33,568 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:19:33,569 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:19:33,570 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:19:33,570 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:19:35,750 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:19:35,774 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:19:35,781 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:19:35,931 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:19:35,933 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:19:36,052 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:19:36,186 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:20:22,903 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:20:22,905 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:20:22,906 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:20:22,906 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:20:25,036 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:20:25,048 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:20:25,083 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:20:25,091 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:20:25,092 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:20:25,152 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:20:25,230 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:23:46,522 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:23:46,524 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:23:46,525 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:23:46,525 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:23:48,637 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:23:48,637 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:23:48,808 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:23:48,809 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:23:48,876 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:23:48,943 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:28:01,123 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:28:04,807 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:28:06,414 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:29:13,275 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:29:13,277 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:29:13,278 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:29:13,279 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:29:15,372 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:29:15,398 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:29:15,408 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:29:15,463 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:29:15,465 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:29:15,548 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:29:15,634 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:29:57,389 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:30:01,267 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:30:03,006 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:31:10,280 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:31:10,283 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 10:31:10,284 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:31:10,284 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:31:12,390 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:31:12,413 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:31:12,455 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:31:12,459 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 10:31:12,460 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:31:12,538 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:31:12,621 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 10:33:19,862 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:33:23,782 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 10:33:25,438 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 10:33:56,641 ERROR:HTTPSConnectionPool(host='telemetry.crewai.com', port=4319): Read timed out. (read timeout=30.0)
+2025-07-15 10:43:27,938 ERROR:LiteLLM call failed: litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out after 600.0 seconds.
+2025-07-15 11:01:09,973 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:01:14,020 INFO:HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:01:15,709 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 11:02:10,193 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:02:10,197 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 11:02:10,198 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:02:10,198 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:02:12,394 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:02:12,410 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:02:12,451 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 11:02:12,521 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:02:12,522 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:02:12,662 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:02:12,787 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:03:07,780 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:03:07,782 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 11:03:07,783 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:03:07,783 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:03:09,906 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:03:09,929 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:03:09,962 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 11:03:09,991 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:03:09,993 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:03:10,091 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:03:10,179 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:04:35,702 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:04:35,705 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 11:04:35,705 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:04:35,705 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:04:37,890 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:04:37,890 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:04:37,988 INFO:
+LiteLLM completion() model= deepseek-r1:1.5b; provider = ollama
+2025-07-15 11:04:38,065 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:04:38,066 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:04:38,169 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:04:38,273 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:06:12,486 INFO:HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-07-15 11:06:12,489 INFO:Wrapper: Completed Call, calling success_handler
+2025-07-15 11:06:12,489 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:06:12,490 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:06:14,671 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:06:14,677 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:06:14,826 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:06:14,828 INFO:selected model name for cost calculation: ollama/deepseek-r1:1.5b
+2025-07-15 11:06:14,942 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+2025-07-15 11:06:15,026 INFO:HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
