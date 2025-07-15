@@ -8,6 +8,10 @@ It provides both **CLI and GUI** interfaces to explore patent data, refine searc
 
 ---
 
+![App Screenshot](LithiumBattery_App/.png)
+
+---
+
 ## 🚀 Key Capabilities
 
 * 🔍 **Keyword, Semantic & Hybrid Patent Search** using OpenSearch
