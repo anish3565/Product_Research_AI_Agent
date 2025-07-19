@@ -47,21 +47,19 @@ class SearchPatentsTool(BaseTool):
     name: str = "search_patents"
     description: str = "Search for patents matching a query"
 
-    def _run(self, query: str, top_k: int = 20) -> str:
+    def _run(self, query: str = None, top_k: int = 20) -> str:
+        if not query:
+            return "Error: No query provided to SearchPatentsTool."
         client = get_opensearch_client("localhost", 9200)
         index_name = "patents"
-
         search_query = {
             "size": top_k,
             "query": {"bool": {"must": [{"match": {"abstract": query}}]}},
             "_source": ["title", "abstract", "publication_date", "patent_id"],
         }
-
         try:
             response = client.search(index=index_name, body=search_query)
             results = response["hits"]["hits"]
-
-            # Formatting results as a string for better LLM consumption
             formatted_results = []
             for i, hit in enumerate(results):
                 source = hit["_source"]
@@ -71,20 +69,19 @@ class SearchPatentsTool(BaseTool):
                     f"   Patent ID: {source.get('patent_id', 'N/A')}\n"
                     f"   Abstract: {source.get('abstract', 'N/A')[:200]}...\n"
                 )
-
             return "\n".join(formatted_results)
         except Exception as e:
             return f"Error searching patents: {str(e)}"
-
 
 class SearchPatentsByDateRangeTool(BaseTool):
     name: str = "search_patents_by_date_range"
     description: str = "Search for patents in a specific date range"
 
-    def _run(self, query: str, start_date: str, end_date: str, top_k: int = 30) -> str:
+    def _run(self, query: str = None, start_date: str = None, end_date: str = None, top_k: int = 30) -> str:
+        if not query or not start_date or not end_date:
+            return "Error: query, start_date, and end_date are required for SearchPatentsByDateRangeTool."
         client = get_opensearch_client("localhost", 9200)
         index_name = "patents"
-
         search_query = {
             "size": top_k,
             "query": {
@@ -101,12 +98,9 @@ class SearchPatentsByDateRangeTool(BaseTool):
             },
             "_source": ["title", "abstract", "publication_date", "patent_id"],
         }
-
         try:
             response = client.search(index=index_name, body=search_query)
             results = response["hits"]["hits"]
-
-            # Formatting results as a string
             formatted_results = []
             for i, hit in enumerate(results):
                 source = hit["_source"]
@@ -116,27 +110,28 @@ class SearchPatentsByDateRangeTool(BaseTool):
                     f"   Patent ID: {source.get('patent_id', 'N/A')}\n"
                     f"   Abstract: {source.get('abstract', 'N/A')[:200]}...\n"
                 )
-
             return "\n".join(formatted_results)
         except Exception as e:
             return f"Error searching patents: {str(e)}"
-        
 
 class AnalyzePatentTrendsTool(BaseTool):
     name: str = "analyze_patent_trends"
     description: str = "Analyze patent trends in patent data"
 
-    def _run(self, patents_data: str) -> str:
+    def _run(self, patents_data: str = None) -> str:
+        if not patents_data:
+            return "Error: No patent data provided to AnalyzePatentTrendsTool."
         return f"Analysis of patent trends: {patents_data}"
 
 
 # Agent setup
-def create_patent_analysis_crew(model_name="llama2:latest"):
+def create_patent_analysis_crew(model_name="llama2:latest", research_area="Lithium Battery"):
     """
     Create a CrewAI crew for patent analysis using Ollama.
 
     Args:
         model_name (str): name of the ollama model to be used
+        research_area (str): research area for analysis
     
     Returns:
         Crew: A CrewAI crew instance configured for patent analysis
@@ -169,7 +164,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
     # Create agents
     research_director = Agent(
         role="Research Director",
-        goal="Coordinate research efforts and define the scope of patent analysis",
+        goal=f"Coordinate research efforts and define the scope of patent analysis for {research_area}",
         backstory="You are an experienced research director who specializes in technological innovation analysis.",
         verbose=True,
         allow_delegation=True,
@@ -179,7 +174,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
 
     patent_retriever = Agent(
         role="Patent Retriever",
-        goal="Find and retrieve the most relevant patents related to the research area",
+        goal=f"Find and retrieve the most relevant patents related to the research area: {research_area}",
         backstory="You are a specialized patent researcher with expertise in information retrieval systems.",
         verbose=True,
         allow_delegation=False,
@@ -189,7 +184,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
 
     data_analyst = Agent(
         role="Patent Data Analyst",
-        goal="Analyze patent data to identify trends, patterns, and emerging technologies",
+        goal=f"Analyze patent data to identify trends, patterns, and emerging technologies in {research_area}",
         backstory="You are a data scientist specializing in patent analysis with years of experience in technology forecasting.",
         verbose=True,
         allow_delegation=False,
@@ -199,7 +194,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
 
     innovation_forecaster = Agent(
         role="Innovation Forecaster",
-        goal="Predict future innovations and technologies based on patent trends",
+        goal=f"Predict future innovations and technologies based on patent trends in {research_area}",
         backstory="You are an expert in technological forecasting with a track record of accurate predictions in emerging technologies.",
         verbose=True,
         allow_delegation=False,
@@ -207,30 +202,30 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
         tools=tools,
     )
 
-    # Creatnig tasks with shorter, simpler descriptions
+    # Creating tasks with research_area injected
     task1 = Task(
-        description="""
-        Define a research plan for patents area:
+        description=f"""
+        Define a research plan for the patents area: {research_area}
         1. Key technology areas to focus on
         2. Time periods for analysis (focus on last 3 years)
         3. Specific technological aspects to analyze
         """,
-        expected_output="""A research plan with focus areas, time periods, and key technological aspects.""",
+        expected_output=f"A research plan for {research_area} with focus areas, time periods, and key technological aspects.",
         agent=research_director,
     )
 
     task2 = Task(
-        description="""
-        Using the research plan, retrieve patents related to mentioned technology from the last 3 years.
+        description=f"""
+        Using the research plan, retrieve patents related to {research_area} from the last 3 years.
         Use the search_patents and search_patents_by_date_range tools to gather comprehensive data.
         Focus on the most relevant and innovative patents.
-        Group patents by sub-technologies within lithium batteries.
+        Group patents by sub-technologies within {research_area}.
         Provide a summary of the retrieved patents, including:
         - Total number of patents found
         - Key companies/assignees
         - Main technological categories
         """,
-        expected_output="""A comprehensive patent retrieval report containing:
+        expected_output=f"""A comprehensive patent retrieval report for {research_area} containing:
         - Summary of total patents found
         - List of key patents grouped by sub-technology
         - Analysis of top companies/assignees
@@ -242,17 +237,17 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
     )
 
     task3 = Task(
-        description="""
-        Analyze the retrieved patent data to identify trends and patterns:
+        description=f"""
+        Analyze the retrieved patent data for {research_area} to identify trends and patterns:
         1. Identify growing vs. declining areas of innovation
         2. Analyze technology evolution over time
         3. Identify key companies and their focus areas
-        4. Determine emerging sub-technologies within lithium batteries
+        4. Determine emerging sub-technologies within {research_area}
         5. Analyze patent claims to understand technological improvements
         
         Create a comprehensive analysis with specific trends, supported by data.
         """,
-        expected_output="""A trend analysis report containing:
+        expected_output=f"""A trend analysis report for {research_area} containing:
         - Identification of growing vs. declining technology areas
         - Timeline of technology evolution
         - Company focus analysis
@@ -265,8 +260,8 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
     )
 
     task4 = Task(
-        description="""
-        Based on the patent analysis, predict future innovations in the mentioned technology:
+        description=f"""
+        Based on the patent analysis, predict future innovations in {research_area}:
         1. Identify technologies likely to see breakthroughs in the next 2-3 years
         2. Recommend specific areas for R&D investment
         3. Predict which companies are positioned to lead innovation
@@ -275,7 +270,7 @@ def create_patent_analysis_crew(model_name="llama2:latest"):
         
         Create a detailed forecast with specific technology predictions and justification.
         """,
-        expected_output="""A future innovation forecast containing:
+        expected_output=f"""A future innovation forecast for {research_area} containing:
         - Predicted breakthrough technologies for next 2-3 years
         - Prioritized list of R&D investment areas
         - Companies likely to lead future innovation
@@ -316,7 +311,7 @@ def run_patent_analysis(research_area, model_name="llama2:latest"):
         str: Analysis results
     """
     try:
-        crew = create_patent_analysis_crew(model_name)
+        crew = create_patent_analysis_crew(model_name, research_area)
         result = crew.kickoff(inputs={"research_area": research_area})
 
         # Extract the string output from the CrewOutput object
