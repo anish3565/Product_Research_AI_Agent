@@ -72,8 +72,20 @@ if page == "Patent Trend Analysis":
                     f.write(result)
                 st.success("Analysis completed!")
                 st.download_button("📄 Download Analysis Report", data=result, file_name=os.path.basename(filename))
-                st.text_area("Analysis Summary", result[:1000] + ("..." if len(result) > 1000 else ""), height=300)
-
+                
+                # Display each main point if result is structured, else fallback to text area
+                import re
+                sections = re.split(r"\n\s*\d+\.\s+\*\*", result)
+                if len(sections) > 1:
+                    # Print the introduction/summary
+                    st.markdown(sections[0].strip())
+                    # Print each numbered section
+                    for i, sec in enumerate(sections[1:], 1):
+                        sec = sec.strip()
+                        if sec:
+                            st.markdown(f"**{i}. {sec}")
+                else:
+                    st.text_area("Analysis Summary", result, height=500)
 elif page == "Search Patents":
     st.subheader("🔍 Search Patents")
     query = st.text_input("Enter search query:")
@@ -91,7 +103,7 @@ elif page == "Search Patents":
             for r in results:
                 src = r.get("_source", {})
                 st.markdown(f"**{src.get('title', 'No Title')}**")
-                st.markdown(f"- 📅 Date: {src.get('publication_date', 'N/A')}\n- 🆔 ID: {src.get('patent_id', 'N/A')}\n- 📄 Abstract: {src.get('abstract', '')[:300]}...")
+                st.markdown(f"- 📅 Date: {src.get('publication_date', 'N/A')}\n- 🆔 ID: {src.get('patent_id', 'N/A')}\n- 📄 Abstract: {src.get('abstract', '')}...")
                 st.markdown("---")
         except Exception as e:
             logging.exception("Search error")
@@ -109,7 +121,7 @@ elif page == "Iterative Exploration":
                 for r in results:
                     src = r.get("_source", {})
                     st.markdown(f"**{src.get('title', 'No Title')}**")
-                    st.markdown(f"- 📅 Date: {src.get('publication_date', 'N/A')}\n- 🆔 ID: {src.get('patent_id', 'N/A')}\n- 📄 Abstract: {src.get('abstract', '')[:300]}...")
+                    st.markdown(f"- 📅 Date: {src.get('publication_date', 'N/A')}\n- 🆔 ID: {src.get('patent_id', 'N/A')}\n- 📄 Abstract: {src.get('abstract', '')}...")
                     st.markdown("---")
             except Exception as e:
                 logging.exception("Iterative exploration error")
