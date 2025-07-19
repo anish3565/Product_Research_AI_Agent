@@ -2,6 +2,9 @@ from embeddings import get_embedding
 from opensearch_client import get_opensearch_client
 
 def keyword_search(query_text, top_k=20):
+    if not query_text:
+        print("Keyword search error: query_text is empty.")
+        return []
     client = get_opensearch_client("localhost", 9200)
     index_name = "patents"
 
@@ -19,6 +22,9 @@ def keyword_search(query_text, top_k=20):
         return []
 
 def semantic_search(query_text, top_k=20):
+    if not query_text:
+        print("Semantic search error: query_text is empty.")
+        return []
     client = get_opensearch_client("localhost", 9200)
     index_name = "patents"
 
@@ -45,6 +51,9 @@ def semantic_search(query_text, top_k=20):
         return []
 
 def hybrid_search(query_text, top_k=20):
+    if not query_text:
+        print("Hybrid search error: query_text is empty.")
+        return []
     client = get_opensearch_client("localhost", 9200)
     index_name = "patents"
 
@@ -83,6 +92,9 @@ def hybrid_search(query_text, top_k=20):
             return []
 
 def iterative_search(query_text, refinement_steps=3, top_k=20):
+    if not query_text:
+        print("Iterative search error: query_text is empty.")
+        return []
     client = get_opensearch_client("localhost", 9200)
     index_name = "patents"
 
@@ -116,41 +128,3 @@ def iterative_search(query_text, refinement_steps=3, top_k=20):
             break
 
     return all_results or []
-
-if __name__ == "__main__":
-    print("PATENT SEARCH TOOL")
-    print("-" * 50)
-
-    query = input("Enter your search query: ").strip()
-    if not query:
-        print("⚠️ No query entered. Exiting.")
-        exit()
-
-    print("\nSelect search type:")
-    print("1. Keyword Search")
-    print("2. Semantic Search")
-    print("3. Hybrid Search")
-    print("4. Iterative Search")
-    choice = input("Enter your choice (1-4): ").strip()
-
-    print("\n🔍 Searching...\n")
-
-    if choice == "1":
-        results = keyword_search(query)
-    elif choice == "2":
-        results = semantic_search(query)
-    elif choice == "3":
-        results = hybrid_search(query)
-    elif choice == "4":
-        results = iterative_search(query)
-    else:
-        print("❌ Invalid choice.")
-        exit()
-
-    print(f"\n✅ Found {len(results)} result(s):\n")
-    for i, result in enumerate(results, 1):
-        source = result["_source"]
-        print(f"{i}. Title: {source.get('title')}")
-        print(f"   Date: {source.get('publication_date')}")
-        print(f"   Patent ID: {source.get('patent_id')}")
-        print(f"   Abstract: {source.get('abstract', '')[:200]}...\n")
