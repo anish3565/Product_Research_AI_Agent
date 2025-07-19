@@ -1,3 +1,6 @@
+![App Screenshot](assets/LithiumBattery_App.png)
+---
+
 # 🔋 Patent Innovation Predictor
 
 A cutting-edge AI-powered system that intelligently analyzes, explores, and forecasts innovation patterns in **patent datasets** across **diverse technology domains**. This project blends the strengths of **LLMs**, **vector databases**, **semantic search**, **SerpAPI**, and **multi-agent reasoning** into a unified tool that aids R\&D leaders, analysts, and strategists.
